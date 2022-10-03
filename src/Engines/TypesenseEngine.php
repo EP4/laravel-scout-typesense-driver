@@ -456,7 +456,8 @@ class TypesenseEngine extends Engine
      */
     public function getTotalCount($results): int
     {
-        return (int) ($results['found'] ?? 0);
+        $results = (int) ($results['found'] ?? 0);
+        return ($this->limitHits > 0 && $results > $this->limitHits) ? $this->limitHits : $results;
     }
 
     /**
