@@ -157,6 +157,14 @@ class TypesenseEngine extends Engine
      */
     public function update($models): void
     {
+        if ($models->isEmpty()) {
+            return;
+        }
+        
+        if (!empty($models->first()->makeAllSearchableWith) && is_array($models->first()->makeAllSearchableWith)) {
+            $models->load($models->first()->makeAllSearchableWith);
+        }
+
         $collection = $this->typesense->getCollectionIndex($models->first());
 
         if ($this->usesSoftDelete($models->first()) && config('scout.soft_delete', false)) {
