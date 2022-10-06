@@ -375,4 +375,18 @@ class BuilderMixin
             return $this;
         };
     }
+    
+    /**
+     * @param array $searchRequests
+     *
+     * @return \Closure
+     */
+    public function searchMulti(): Closure
+    {
+        return function (array $searchRequests) {
+            $this->engine()->searchMulti($searchRequests);
+
+            return $this;
+        };
+    }
 }
