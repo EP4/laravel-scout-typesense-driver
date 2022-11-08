@@ -395,7 +395,9 @@ class TypesenseEngine extends Engine
             ->values()
             ->implode(' && ');
 
-		return $whereFilter . ' && ' . $whereInFilter;
+        return $whereFilter . (
+            (strlen($whereFilter) > 0 && strlen($whereInFilter) > 0) ? ' && ' : ''
+        ) . $whereInFilter;
     }
 
     /**
