@@ -237,6 +237,7 @@ class TypesenseEngine extends Engine
             'q'                          => $builder->query,
             'query_by'                   => implode(',', $builder->model->typesenseQueryBy()),
             'query_by_weights'           => method_exists($builder->model,'typesenseQueryByWeights') ? implode(',', $builder->model->typesenseQueryByWeights()) : null,
+            'num_typos'                  => method_exists($builder->model,'typesenseNumTypos') ? implode(',', $builder->model->typesenseNumTypos()) : 2,
             'filter_by'                  => $this->filters($builder),
             'per_page'                   => $perPage,
             'page'                       => $page,

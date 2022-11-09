@@ -13,5 +13,7 @@ interface TypesenseDocument
 
     public function typesenseQueryByWeights(): array;
 
+    public function typesenseNumTypos(): array;
+
     public function getCollectionSchema(): array;
 }
