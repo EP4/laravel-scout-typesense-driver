@@ -123,14 +123,12 @@ class Typesense
         /**
          * @var $document Document
          */
-        $document = $collectionIndex->getDocuments()[(string) $modelId] ?? null;
-
-        // dd($document);
-        if($document) {
+        try {
+            $document = $collectionIndex->getDocuments()[(string) $modelId];
             return $document->delete();
+        } catch (ObjectNotFound $exception) {
+            return [];
         }
-
-        return [];
     }
 
     /**
