@@ -83,6 +83,11 @@ class TypesenseEngine extends Engine
     private int $snippetThreshold = 30;
 
     /**
+     * @var int
+     */
+    private int $typoTokensThreshold = 1;
+
+    /**
      * @var bool
      */
     private bool $exhaustiveSearch = false;
@@ -246,6 +251,7 @@ class TypesenseEngine extends Engine
             'highlight_start_tag'        => $this->startTag,
             'highlight_end_tag'          => $this->endTag,
             'snippet_threshold'          => $this->snippetThreshold,
+            'typo_tokens_threshold'      => $this->typoTokensThreshold,
             'exhaustive_search'          => $this->exhaustiveSearch,
             'use_cache'                  => $this->useCache,
             'cache_ttl'                  => $this->cacheTtl,
@@ -779,6 +785,20 @@ class TypesenseEngine extends Engine
     public function setSnippetThreshold(int $snippetThreshold): static
     {
         $this->snippetThreshold = $snippetThreshold;
+
+        return $this;
+    }
+
+    /**
+     * If at least typo_tokens_threshold number of results are not found for a specific query, Typesense will attempt to look for results with more typos until num_typos is reached or enough results are found. Set typo_tokens_threshold to 0 to disable typo tolerance.
+     *
+     * @param int $typoTokensThreshold
+     *
+     * @return $this
+     */
+    public function setTypoTokensThreshold(int $typoTokensThreshold): static
+    {
+        $this->typoTokensThreshold = $typoTokensThreshold;
 
         return $this;
     }

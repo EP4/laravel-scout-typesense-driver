@@ -302,6 +302,21 @@ class BuilderMixin
     }
 
     /**
+     * @param int $typoTokensThreshold
+     *
+     * @return \Closure
+     */
+    public function setTypoTokensThreshold(): Closure
+    {
+        return function (int $typoTokensThreshold) {
+            $this->engine()
+                ->setTypoTokensThreshold($typoTokensThreshold);
+
+            return $this;
+        };
+    }
+
+    /**
      * @param bool $exhaustiveSearch
      *
      * @return \Closure
